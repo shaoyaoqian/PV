@@ -5,7 +5,7 @@ module.exports = defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'lib/main.js'),
-      name: 'PV',
+      name: 'LALA',
       fileName: (format) => `pv.${format}.js`
     }
   }

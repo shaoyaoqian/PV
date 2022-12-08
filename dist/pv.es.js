@@ -1,22 +1,5 @@
 var __defProp = Object.defineProperty;
-var __defProps = Object.defineProperties;
-var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __spreadValues = (a, b) => {
-  for (var prop in b || (b = {}))
-    if (__hasOwnProp.call(b, prop))
-      __defNormalProp(a, prop, b[prop]);
-  if (__getOwnPropSymbols)
-    for (var prop of __getOwnPropSymbols(b)) {
-      if (__propIsEnum.call(b, prop))
-        __defNormalProp(a, prop, b[prop]);
-    }
-  return a;
-};
-var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 var __publicField = (obj, key, value) => {
   __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
   return value;
@@ -668,12 +651,12 @@ const Fe = (e, t) => {
   }
   e.innerHTML = t;
 }, Ze = (e) => {
-  const t = __spreadProps(__spreadValues({ delimiters: ["{{", "}}"], delimitersRE: /\{\{([^]+?)\}\}/g }, e), { scope: e ? e.scope : D({}), dirs: e ? e.dirs : {}, effects: [], blocks: [], cleanups: [], effect: (n) => {
+  const t = { delimiters: ["{{", "}}"], delimitersRE: /\{\{([^]+?)\}\}/g, ...e, scope: e ? e.scope : D({}), dirs: e ? e.dirs : {}, effects: [], blocks: [], cleanups: [], effect: (n) => {
     if (fe)
       return Ie(n), n;
     const s = wt(n, { scheduler: () => Ie(s) });
     return t.effects.push(s), s;
-  } });
+  } };
   return t;
 }, Ge = (e, t = {}) => {
   const n = e.scope, s = Object.create(n);
@@ -681,7 +664,7 @@ const Fe = (e, t) => {
   const r = D(new Proxy(s, { set(i, c, o, l) {
     return l === r && !i.hasOwnProperty(c) ? Reflect.set(n, c, o) : Reflect.set(i, c, o, l);
   } }));
-  return Ue(r), __spreadProps(__spreadValues({}, e), { scope: r });
+  return Ue(r), { ...e, scope: r };
 }, Ue = (e) => {
   for (const t of Object.keys(e))
     typeof e[t] == "function" && (e[t] = e[t].bind(e));
